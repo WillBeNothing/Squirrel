@@ -1,0 +1,22 @@
+{
+   "name": "default",
+   "type": "postgres",
+   "host": "localhost",
+   "port": 5432,
+   "username": "postgres",
+   "password": "docker",
+   "database": "squirrel_database",
+   "migrations" : [
+	"/home/william/Documentos/Projects/Squirrel/server/src/database/migrations/*.ts"
+   ],
+   "entities": [
+	"./src/app/models/*.ts"
+],
+   "cli" : {
+	   "migrationsDir": "/home/william/Documentos/Projects/Squirrel/server/src/database/migrations"
+   },
+   "logging": {
+      "logQueries": true,
+      "logFailedQueryError": true
+    }
+}
