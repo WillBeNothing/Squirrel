@@ -1,5 +1,9 @@
 import {
-  Entity, PrimaryGeneratedColumn, Column, CreateDateColumn, ManyToOne, JoinColumn,
+  Entity,
+  PrimaryGeneratedColumn,
+  Column, CreateDateColumn,
+  ManyToOne,
+  JoinColumn,
 } from 'typeorm';
 
 import User from './User';
@@ -15,8 +19,8 @@ export default class Spendings {
       @Column()
       price: number;
 
-      @Column({ nullable: true })
-      tag: string;
+      @Column()
+      description: string;
 
       @ManyToOne(() => User, (user) => user.spendings, {
         cascade: [
@@ -25,7 +29,7 @@ export default class Spendings {
         ],
       })
       @JoinColumn({ name: 'user_id' })
-      user: User;
+      user: User | number;
 
       @CreateDateColumn({ name: 'created_at' })
       created_at: Date;

@@ -34,5 +34,5 @@ export default class User {
       ],
     })
     @JoinColumn({ name: 'user_id' })
-    spendings: Spendings
+    spendings: Spendings[]
 }

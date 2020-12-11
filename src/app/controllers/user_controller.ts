@@ -1,7 +1,7 @@
 import { Request, Response } from 'express';
-import { getRepository, Between } from 'typeorm';
+import { getRepository } from 'typeorm';
 import * as bcrypt from 'bcrypt';
-import { startOfDay, endOfDay, parseISO } from 'date-fns';
+import id from '../../utils/userid';
 
 import UserEntity from '../models/User';
 
@@ -39,23 +39,14 @@ class User {
     }
   }
 
-  async get(req: Request, res: Response) {
-    let { start, end }: any = req.query;
-
-    start = parseISO(start);
-    end = parseISO(end);
-
+  async show(req: Request, res: Response) {
     const userRepository = getRepository(UserEntity);
+    const user = await userRepository.findOne({
+      where: { id: id(req) },
+      relations: ['spendings'],
+    });
 
-    const findArgs = {
-      where: {
-        created_at: Between(startOfDay(start).toISOString(), endOfDay(end).toISOString()),
-      },
-    };
-
-    const catchingByDate = await userRepository.find(findArgs);
-
-    return res.json(catchingByDate);
+    return res.json({ user }).status(200);
   }
 }
 

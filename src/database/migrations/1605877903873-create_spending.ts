@@ -26,9 +26,8 @@ export class createSpending1605877903873 implements MigrationInterface {
           scale: 2,
         },
         {
-          name: 'tag',
-          type: 'varchar',
-          isNullable: true,
+          name: 'description',
+          type: 'text',
         },
         {
           name: 'user_id',
